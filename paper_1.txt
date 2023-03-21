@@ -1,0 +1,852 @@
+第一章 绪 论
+1.1基于Struts和Hibernate的教学答疑系统的优势
+目前随着Internet的广泛使用，网络教学系统被越来越多的应用在教学过程中。许多学校都建立了网上教学系统，通过这样的系统，学生可以在异地访问教学资源，不受时间的限制进行学习。网上教学系统中丰富的教学资源又可以作为课堂教学重要的补充。自动答疑系统是网上教育系统的一个重要组成部分，学生可以通过这个系统向老师寻求帮助，获得问题的解答。基于web的自动答疑系统具有以下优势：
+1)改善教学的效果
+通过学生在课程学习过程中所反映和提出的共同问题，教师以及课件编写者等远程教学过程中涉及的各管理和参与者，能够藉此反馈直接调整教学的内容、进度，改善教学方式等，从而提高效果。
+2)提高学生学习效率
+通过在答疑系统中对一些简单的公共的问题和概念提供详细的解答和解释，可以避免教学中的大量时间花费在基本概念的解释上，从而可以投入进行深入的讨论和交流等。
+3)丰富教学经验
+学生在学习过程中产生的问题以及教师等的解答，经过一定时间的积累成为可以重复利用的宝贵资源。其它的学生可以从以往学生的问题中取得收获，教师也能够利用这些资源来有针对性的制定教学内容和进度等。
+4)改善教学的环境
+远程教学系统中，整个系统的设计、教学方式的制定也直接影响了教学效果。从学生的反馈可以调整它的结构，改善现有系统的不足。作为远程教学的一个重要的辅助系统，自动答疑系统可以直接与课程学习、考试等系统结合在一起，成为其中不可分割的一部分，也可以在实时的教学模式中使用，作为课后学生答疑、师生交流或教师获得学生反馈、衡量教学效果的一个配套系统。
+1.2 我的研究工作
+为了顺利完成基于Struts和Hibernate的教学答疑系统的设计与实现，我在毕业设计期间所做的研究工作如下：
+1)研究了相关文献中关于基于Struts和Hibernate的教学自动答疑系统的内容;
+2)研究了相关文献中关于关键字匹配算法方面的的内容;
+3)学习Core Java 等各种技术;
+4)制定了基于web的网络课程答疑系统的总体设计方案;
+5)设计了本系统的各模块的功能和实现细则;
+6)设计了底层数据库的实现;
+7)学习，设计了ajax，javascript校验
+第二章 系统设计中各种技术的介绍
+2.1 核心Java介绍
+在经历了以大型机为代表的集中计算模式和以PC机为代表的分散计算模式之后，互联网的出现使得计算模式进入了网络计算时代。网络计算模式的一个特点是计算机是异构的，即计算机的类型和操作系统是不一样的，例如SUN工作站的硬件是SPARC体系，软件是UNIX中的Solaris操作系统，而PC机的硬件是INTEL体系，操作系统是windows或者是Linux，因此相应的编程语言基本上只是适用于单机系统，例如COBOL、FORTRAN、C、C＋＋等等；网络计算模式的另一个特点是代码可以通过网络在各种计算机上进行迁移，这就迫切需要一种跨平台的编程语言，使得用它编写的程序能够在网络中的各种计算机上能够正常运行，java就是在这种需求下应运而生的。正是因为java语言符合了互联网时代的发展要求，才使它获得了巨大的成功。
+俗话说：有心栽花花不成，无心插柳柳成荫。Sun公司绝没想到本想用于消费电子产品开发的编程语言却率先在网络中得到了广泛应用，但是也可以说是东方不亮西方亮，正是因为java语言在设计目标上的正确性使得java语言是金字总会发光的。C语言是面向过程的语言，也是使用率非常高的语言；而面向对象的思想引入到编程语言之后，C语言就被改造成为面向对象的C＋＋语言，得到了广泛的应用。但是C＋＋语言必须兼容C语言，因此C＋＋语言是面向过程和面向对象混合的语言。java语言产生于C＋＋语言之后，是完全的面向对象的编程语言，充分吸取了C＋＋语言的优点，采用了程序员所熟悉的C和C＋＋语言的许多语法，同时又去掉了C语言中指针、内存申请和释放等影响程序健壮性的部分，可以说java语言是站在C＋＋语言这个巨人的肩膀上前进的。
+java语言的一个目标是跨平台，因此采用了解释执行而不是编译执行的运行环境，在执行过程中根据所在的不同的硬件平台把程序解释为当前的机器码，实现跨平台运行。而动态下载程序代码的机制完全是为了适应网络计算的特点，程序可以根据需要把代码实时的从服务器中下载过来执行，在此之前还没有任何一种语言能够支持这一点。
+综合上述,Java的生命力体现在如下方面:
+1.Java产生与流行是InterNet发展的客观要求。
+2.是一门各方面性能都很好的编程语言,它的基本特点是简单,面向对象,分布式,解释的,健壮的,完全的,结构中立的,可移植的,性能很优异的,多线程的,动态的,适合的Internet环境上开发应用系统。
+3.Java可以制作大部分网络应用程序系统,而且与如今流行的WWW浏览器结合很好。
+4.Java不仅仅是一种各方,更重要的是一种区别于传统系统,遵守网络就是计算机信条的平台技术。Java平台将面向对象系统扩展成包括程序和数据的网络计算机(NC),而这个平台的核心就是Java虚拟机,许多使Java成为万能开发平台的属性都源于Java虚拟机的概念和实现。
+JAVA面向对象的思想
+JAVA是纯面向对象编程,面向对象的三大原则封装,继承,多态。下面对这三大原则的介绍:
+封装
+封装是一种把代码和代码所操作的数据捆绑在一起，使这两者不受外界干扰和误用的机制。封装可被理解为一种用做保护的包装器，以防止代码和数据被包装器外部所定义的其他代码任意访问。对包装器内部代码与数据的访问通过一个明确定义的接口来控制。封装代码的好处是每个人都知道怎样访问代码，进而无需考虑实现细节就能直接使用它，同时不用担心不可预料的副作用。
+在JAVA中，最基本的封装单元是类，一个类定义着将由一组对象所共享的行为(数据和代码)。一个类的每个对象均包含它所定义的结构与行为，这些对象就好象是一个模子铸造出来的。所以对象也叫做类的实例。
+在定义一个类时，需要指定构成该类的代码与数据。特别是，类所定义的对象叫做成员变量或实例变量。操作数据的代码叫做成员方法。方法定义怎样使用成员变量，这意味着类的行为和接口要由操作实例数据的方法来定义。
+由于类的用途是封装复杂性，所以类的内部有隐藏实现复杂性的机制。所以JAVA中提供了私有和公有的访问模式，类的公有接口代表外部的用户应该知道或可以知道的每件东西。私有的方法数据只能通过该类的成员代码来访问。这就可以确保不会发生不希望的事情。
+继承
+继承是指一个对象从另一个对象中获得属性的过程。是面向对象程序设计的三大原则之二，它支持按层次分类的概念。例如，波斯猫是猫的一种，猫又是哺乳动物的一种，哺乳动物又是动物的一种。如果不使用层次的概念，每个对象需要明确定义各自的全部特征。通过层次分类方式，一个对象只需要在它的类中定义是它成为唯一的 各个属性，然后从父类中继承它的通用属性。因此，正是由于继承机制，才使得一个对象可以成为一个通用类的一个特定实例。一个深度继承的子类将继承它在类层次中的每个祖先的所有属性。
+继承与封装可以互相作用。如果一个给定的类封装了某些属性，它的任何子类将会含有同样得属性，另加各个子类所有得属性。这是面向对象程序在复杂性上呈线性而非几何增长的一个重要概念。新的子类继承其所有祖先的所有属性。子类和系统中的其他代码不会产生无法预料的交互作用。
+多态
+多态是指一个方法只能有一个名称，但可以有许多形态，也就是程序中可以定义多个同名的方法，用一个接口，多个方法来描述。可以通过方法的参数和类型引用。
+2.2 持久层的HIBERNATE的介绍
+Hibernate 是一个开放源代码的对象关系映射框架，它对 JDBC 进行了轻量级的对象封装，使 Java 程序员可以随心所欲的使用对象编程思维来操纵数据库。它不仅提供了从 Java 类到数据表之间的映射，也提供了数据查询和恢复机制。相对于使用 JDBC 和 SQL 来手工操作数据库，Hibernate 可以大大减少操作数据库的工作量。另外 Hibernate 可以利用代理模式来简化载入类的过程，这将大大减少利用 Hibernate QL 从数据库提取数据的代码的编写量，从而节约开发时间和开发成本 Hibernate 可以和多种Web 服务器或者应用服务器良好集成，如今已经支持几乎所有的流行的数据库服务器。
+Hibernate 具有很大的灵活性，但同时它的体系结构比较复杂，提供了好几种不同的运行方式。在轻型体系中，应用程序提供 JDBC 连接，并且自行管理事务，这种方式使用了 Hibernate 的一个最小子集；在全面解决体系中，对于应用程序来说，所有底层的 JDBC/JTA API 都被抽象了，Hibernate 会替你照管所有的细节。
+在本次系统设计中所有的DAO都应用了Hibernate技术,大部分利用HQL语言对数据库进行增删查改,其中只有小部分使用了SQL进行查询,相比SQL语言而言,HQL使人很直观的了解所进行的操作,更为对数据库底层不熟悉的人提供了极大的方便。
+2.3业务层的JAVABEAN的介绍
+JavaBean 是一种JAVA语言写成的可重用组件。为写成JavaBean，类必须是具体的和公共的，并且具有无参数的构造器。JavaBeans 通过提供符合一致性设计模式的公共方法将内部域暴露称为属性。众所周知，属性名称符合这种模式，其他Java 类可以通过自省机制发现和操作这些JavaBean 属性。
+ 用户可以使用JavaBean将功能、处理、值、数据库访问和其他任何可以用java代码创造的对象进行打包，并且其他的开发者可以通过内部的JSP页面、Servlet、其他JavaBean、applet程序或者应用来使用这些对象。用户可以认为JavaBean提供了一种随时随地的复制和粘贴的功能，而不用关心任何改变。
+虽然JavaBean和Java之间已经有了明确的界限，但在某些方面JavaBean和Java之间仍然存在着非常明显的混淆。Java确实是能够为用户创建可重用的对象，但它却没有管理这些对象相互作用的规则或标准。JavaBean通过指定定义对象之间交互作用的机制，以及大部分对象需要支持的常用行为，如持久性和实际处理等，建立了自己需要的组件模型。
+虽然当前的Java组件模型也可以运行得很好，但在传送真正的可重用性和交互操作性上仍然非常有限，Java用户需要做的最多的一件事就是创建applet并使得它们在Web 页面上相互通讯，这并非易事。JavaBean提供了一个框架包，使用这个包进行通讯就容易得多了。
+JavaBean组件能够通过定义好的标准属性改进性能。总体而言，JavaBean充分发展了Java applet的功能，并结合了Java AWT组件的紧凑性和可重用性。
+2.4表现层Servlet和JSP的介绍
+2.4.1Servlet和JSP的介绍
+Servlet是运行在WEB服务器或应用服务器上的Java程序，它是一个中间层，负责连接来自Web浏览器或其他HTTP客户程序的请求和HTTP服务器上的数据库或应用程序。可以将Servlet看作是一个含有HTML的JAVA程序Servlet的工作是执行下面的任务：读取客户发送的显式数据；读取由浏览器发送的隐式请求数据；生成结果；向客户发送显式数据（即文档）；发送隐式的HTTP响应数据。
+我们可以把JSP看作在静态页面上写Java代码,但其实JSP在服务器第一次运行的时候被服务器翻译为Servlet,正真运行的是翻译后的Servlet。
+JSp和Servlet的区别就如下几点:
+1) JSP以文本为主，主要用于画界面
+2) JSP可以人工扩充，而servlet是固定的
+3) JSP内核是servlet,所以也是基于HTTP协议的请求响应循环
+4) 由HTML（Css、xml）、java code、JSP标签组成
+5) JSP有自定义标签（ASP没有）
+6) CGI和Servlet以代码为主，代码中嵌文本 ；JSP中文本中嵌代码
+7) JSP擅长于表现，而短于逻辑；而Servlet一般用作Contorler和diapatch(控制和流转)；所以在JSP中写界面元素，而逻辑方面由Servlet完成。
+8) JSP不需要写java文件、不需要编译和配置，它被封装到了容器内部;
+9) JSP代码不可重用。
+2.4.2 EL和JSTL的介绍
+EL全名为Expression Language，它原本是JSTL1.0为方便存取数据所自定义的语言。当时EL只能在JSTL标签中使用。
+到了JSP2。0之后，EL已经正式纳入成为标准规范之一。因此，只要是支持servlet2.4/JSP 2.0的Container，就都可以在JSP网页中直接使用EL了。
+JSTL全名为JavaServer Pages Standard Tag Library, 目前最新的版本为1。2版。JSTL是由JCP（Java Community Process）所制定的标准规范，它主要提供给Java Web开发人员一个标准通用的标签函数库。
+Web程序员能够利用JSTL和EL来开发Web程序，取代传统直接在页面上嵌入Java程序（Scripting）的做法，以提高程序的阅读性，维护性和方便性。
+JSTL是一个标准的已制定好的标签库，可以应用于各种领域，如：基本输入输出，流程控制，循环，XML文件剖析，数据库查询及国际化和文字格式标准化的应用等。从(表2－1)可以知道，JSTL所提供的标签函数库主要分为五大类：另外，JSTL也支持EL语法，这也是本系统设计上处理集合迭代的主要方法。
+表2-1标签函数库
+2.5 WEB架构MVC模式和STRUTS的介绍
+2.5.1MVC模式的优先和缺点
+说道MVC的优点，首先，最重要的是应该有多个视图对应一个模型的能力。在目前用户需求的快速变化下，可能有多种方式访问应用的要求。例如，在本系统中用户的注册有学生注册也可能是教师注册，但对于注册的处理都是一样，也就是说注册的处理是一致的。按MVC设计模式，一个用户模型以及多个视图即可解决问题。这样减少了代码的复制，即减少了代码的维护量，一旦模型发生改变，也易于维护。 其次，由于模型返回的数据不带任何显示格式，因而这些模型也可直接应用于接口的使用。
+再次，由于一个应用被分离为三层，因此有时改变其中的一层就能满足应用的改变。一个应用的业务流程或者业务规则的改变只需改动MVC的模型层。
+控制层的概念也很有效，由于它把不同的模型和不同的视图组合在一起完成不同的请求，因此，控制层可以说是包含了用户请求权限的概念。
+最后，它还有利于软件工程化管理。由于不同的层各司其职，每一层不同的应用具有某些相同的特征，有利于通过工程化、工具化产生管理程序代码。
+关于MVC的缺点，首当其冲的是其增加了系统结构和实现的复杂性。对于简单的界面，严格遵循MVC，使模型、视图与控制器分离，会增加结构的复杂性，并可能产生过多的更新操作，降低运行效率。
+　　另外，视图与控制器间的过于紧密的连接。视图与控制器是相互分离，但确实联系紧密的部件，视图没有控制器的存在，其应用是很有限的，反之亦然，这样就妨碍了他们的独立重用。
+　　最后，视图对模型数据的低效率访问。依据模型操作接口的不同，视图可能需要多次调用才能获得足够的显示数据。对未变化数据的不必要的频繁访问，也将损害操作性能。
+2.5.2MVC模型简介
+模型一（图2－2）：JSP+JavaBean，JSP既充当控制，又充当视图，以页面为核心，JSP使用jsp:useBean，他不能够实现不同的页面，显示不同的数据，需要借助于中间类来调用JavaBean的方法才能实现。
+图 2-2 JSP+JavaBean控制图
+模型二（图2－3）：JSP+Servlet+JavaBean，以控制为核心，JSP只负责显示和收集数据，sevlet，连接视图和模型，将视图层数据，发送给模型层，JavaBean，分为业务类和数据实体，业务类处理业务数据，数据实体，承载数据，基本上大多数的项目都是使用这种MVC的实现模式。
+图2-3 MVC1控制图
+StrutsMVC框架
+Struts是使用MVC的实现模式二来实现的，也就是以控制器为核心。(图2-4)
+Struts提供了一些组件使用MVC开发应用程序：
+1）模型（Model）
+在Struts的体系结构中，模型分为两个部分：系统的内部状态和可以改变状态的操作（事务逻辑）。内部状态通常由一组Actinform Bean表示。根据设计或应用程序复杂度的不同，这些Bean可以是自包含的并具有持续的状态，或只在需要时才获得数据（从某个数据库 (​http:​/​​/​db.rdxx.com​/​ _blank​)）。大型应用程序通常在方法内部封装事务逻辑（操作），这些方法可以被拥有状态信息的bean调用。比如购物车bean，它拥有用户购买商品的信息，可能还有checkOut()方法用来检查用户的信用卡，并向仓库发定货信息。小型程序中，操作可能会被内嵌在Action类，它是struts框架中控制器角色的一部分。当逻辑简单时这个方法很适合。 建议用户将事务逻辑（要做什么）与Action类所扮演的角色（决定做什么）分开。
+2）视图（View）
+视图主要由JSP建立，struts包含扩展自定义标签库（TagLib），可以简化创建完全国际化用户界面的过程。目前的标签库包括：Bean Tags、HTML (​http:​/​​/​web.rdxx.com​/​HTML​/​ _blank​) tags、Logic Tags、Nested Tags 以及Template Tags等。
+3）控制器（Controller）
+　在struts中，基本的控制器组件是ActionServlet类中的实例servelt，实际使用的servlet在配置文件中由一组映射（由ActionMapping类进行描述）进行定义。对于业务逻辑的操作则主要由Action、ActionMapping、ActionForward这几个组件协调完成的，其中Action扮演了真正的业务逻辑的实现者，ActionMapping与ActionForward则指定了不同业务逻辑或流程的运行方向。struts-config。xml 文件配置控制器。
+Struts框架的处理流程清楚的体现了MVC系统的特点，简单的Struts组件结构如图2所示。Struts Controller ActionServlet处理客户请求，利用配置的ActionMapping对象把请求映射到Action处理器对象进行处理。Action处理对象访问ActionForm中的数据，处理和响应客户请求，它还调用后台的Bean组件，这些组件封装了具体的业务逻辑。Action处理器对象根据处理结果通知Controller，Controller进行下一步的处理。
+图2-4 MVC2控制图
+2.6 Spring简介
+　　Spring是一个开源框架，它由Rod Johnson创建。它是为了解决企业应用开发的复杂性而创建的。Spring使用基本的JavaBean来完成以前只可能由EJB完成的事情。然而，Spring的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度而言，任何Java应用都可以从Spring中受益。
+　　◆目的：解决企业应用开发的复杂性
+　　◆功能：使用基本的JavaBean代替EJB，并提供了更多的企业应用功能
+　　◆范围：任何Java应用
+　　简单来说，Spring是一个轻量级的控制反转(IoC (​http:​/​​/​baike.baidu.com​/​view​/​146665.htm _blank​))和面向切面(AOP (​http:​/​​/​baike.baidu.com​/​view​/​73626.htm _blank​))的容器框架。
+　　◆轻量——从大小与开销两方面而言Spring都是轻量的。完整的Spring框架可以在一个大小只有1MB多的JAR文件里发布。并且Spring所需的处理开销也是微不足道的。此外，Spring是非侵入式的：典型地，Spring应用中的对象不依赖于Spring的特定类。
+　　◆控制反转——Spring通过一种称作控制反转（IoC）的技术促进了松耦合。当应用了IoC，一个对象依赖的其它对象会通过被动的方式传递进来，而不是这个对象自己创建或者查找依赖对象。你可以认为IoC与JNDI相反——不是对象从容器中查找依赖，而是容器在对象初始化时不等对象请求就主动将依赖传递给它。
+　　◆面向切面——Spring提供了面向切面编程的丰富支持，允许通过分离应用的业务逻辑与系统级服务（例如审计（auditing）和事务（transaction）管理）进行内聚性的开发。应用对象只实现它们应该做的——完成业务逻辑——仅此而已。它们并不负责（甚至是意识）其它的系统级关注点，例如日志或事务支持。
+　　◆容器——Spring包含并管理应用对象的配置和生命周期，在这个意义上它是一种容器，你可以配置你的每个bean如何被创建——基于一个可配置原型 (​http:​/​​/​baike.baidu.com​/​view​/​228368.htm _blank​)（prototype），你的bean可以创建一个单独的实例或者每次需要时都生成一个新的实例——以及它们是如何相互关联的。然而，Spring不应该被混同于传统的重量级的EJB容器，它们经常是庞大与笨重的，难以使用。
+　　◆框架——Spring可以将简单的组件配置、组合成为复杂的应用。在Spring中，应用对象被声明式地组合，典型地是在一个XML文件里。Spring也提供了很多基础功能（事务管理、持久化框架集成等等），将应用逻辑的开发留给了你。
+所有Spring的这些特征使你能够编写更干净、更可管理、并且更易于测试的代码。它们也为Spring中的各种模块提供了基础支持。
+◆Spring能有效地组织你的中间层对象,无论你是否选择使用了EJB。如果你仅仅使用了Struts或其他的包含了J2EE特有APIs的framework，你会发现Spring关注了遗留下的问题。
+　　◆Spring能消除在许多工程上对Singleton的过多使用。根据我的经验，这是一个主要的问题，它减少了系统的可测试性和面向对象特性。
+　　◆Spring能消除使用各种各样格式的属性定制文件的需要,在整个应用和工程中，可通过一种一致的方法来进行配置。曾经感到迷惑，一个特定类要查找迷幻般的属性关键字或系统属性,为此不得不读Javadoc乃至源编码吗？有了Spring，你可很简单地看到类的JavaBean属性。倒置控制的使用(在下面讨论)帮助完成这种简化。
+　　◆Spring能通过接口而不是类促进好的编程习惯，减少编程代价到几乎为零。
+　　◆Spring被设计为让使用它创建的应用尽可能少的依赖于他的APIs。在Spring应用中的大多数业务对象没有依赖于Spring。
+　　◆使用Spring构建的应用程序易于单元测试。
+　　◆Spring能使EJB的使用成为一个实现选择,而不是应用架构的必然选择。你能选择用POJOs或local EJBs来实现业务接口，却不会影响调用代码。
+　　◆Spring帮助你解决许多问题而无需使用EJB。Spring能提供一种EJB的替换物，它们适于许多web应用。例如,Spring能使用AOP提供声明性事务而不通过使用EJB容器，如果你仅仅需要与单个的数据库打交道，甚至不需要JTA实现。
+　　◆Spring为数据存取提供了一致的框架,不论是使用JDBC或O/R mapping产品（如Hibernate）。Spring确实使你能通过最简单可行的解决办法解决你的问题。这些特性是有很大价值的。
+总结起来，Spring有如下优点：
+　　1)低侵入式设计，代码污染极低
+　　2)独立于各种应用服务器，可以真正实现Write Once,Run Anywhere的承诺
+3)Spring的DI机制降低了业务对象替换的复杂性　　
+4)Spring并不完全依赖于Spring，开发者可自由选用Spring框架的部分或全部
+第三章 系统所使用工具的介绍
+3.1 TOMCAT的介绍
+Tomcat在严格意义上并不是一个真正的应用服务器，它只是一个可以支持运行Serlvet/JSP的Web容器，不过Tomcat也扩展了一些应用服务器的功能，如JNDI，数据库连接池，用户事务处理等等。Tomcat是Apache组织下Jakarta项目下的一个子项目，目前Tomcat被非常广泛的应用在中小规模的Java Web应用中。
+Tomcat 是一种具有JSP环境的Servlet容器。Servlet容器是代替用户管理和调用 Servlet的运行时外壳。作为一个开放源代码的软件， Jakarta -Tomcat有着自己独特的优势：
+ 首先，它容易得到。事实上，任何人都可以从互联网上自由地下载这个软件。无论从http://jakarta。Apache。org还是从其他网站（Jakarta Tomcat是Apache软件基金会开发的一个开放源码的应用服务器）。
+ 其次，对于开发人员，特别是Java开发人员，Tomcat提供了全部的源代码，包括Servlet引擎、JSP引擎、HTTP服务器。无论是对哪一方面感兴趣的程序员，都可以从这些由世界顶尖的程序员书写的代码中获得收益。
+ 最后，由于源代码的开放及世界上许多程序员的卓有成效的工作， Tomcat已经可以和大部分的主流服务器一起工作，而且是以相当高的效率一起工作。如：以模块的形式被载入Apache，以ISAPI形式被载入IIS或PWS，以NSAPI的形式被载入Netscape Enterprise Server。
+ 由于Java的跨平台特性，基于Java的Tomcat也具有跨平台性。
+Tomcat的目录结构
+首先，下载jakarta-tomcat.zip包，解压缩到一个目录下，如：c: omcat”。这时，会得到如下的Tomcat的目录结构：
+- - - jakarta - tomcat
+| - - - bin Tomcat执行脚本目录
+| - - - Common 放置一些通用类（如JDBC的驱动程序等）
+| - - - conf Tomcat配置文件
+| - - - doc Tomcat文档
+| - - - lib Tomcat运行需要的库文件（JARS）
+| - - - logs Tomcat执行时的LOG文件
+| - - - src Tomcat的源代码
+| - - - webapps Tomcat的主要Web发布目录（存放我们自己的JSP,SERVLET,类）
+| - - - work Tomcat的工作目录，Tomcat将翻译JSP文件到的Java文件和class文件放在这里。(表3-1)
+表3-1 tomcat目录结构
+目 录 名 该目录内的文件的一般功能描述
+bin 包含有Startup。bat（启动服务器）与shutdown。bat（关闭服务器）文件
+conf 包含设置部署在Tomcat上的Web应用的变量的初始值的设置文件，包括 server。xml (Tomcat 的全局配置文件) 和 web。xml （为不同的Tomcat配置的web应用设置缺省值的文件）
+doc 包含关于Tomcat的各种各样的文档。
+common 在其lib目录下，主要存放如JDBC的驱动程序等
+lib 包含被Tomcat使用的各种各样的jar文件。在UNIX上，任何这个目录中的文件将被附加到Tomcat的classpath中。
+logs Tomcat的log文件。
+src servlet API的源文件。
+webapps 包含Web应用的程序 （JSP、Servlet和JavaBean等）
+work 由Tomcat自动生成，这是Tomcat放置它运行期间的中间(intermediate)文件(诸如编译的JSP文件)地方。 如果当Tomcat运行时，你删除了这个目录那么将不能够执行包含JSP的页面。
+本系统由Myeclipse部署至TOMCAT6.0服务器中。
+3.2 MYSQL的介绍
+MySQL是最受欢迎的开源SQL数据库管理系统，它由MySQL AB开发、发布和支持。MySQL AB是一家基于MySQL开发人员的商业公司，它是一家使用了一种成功的商业模式来结合开源价值和方法论的第二代开源公司。
+MySQL是一个数据库管理系统：一个数据库是一个结构化的数据集合。如果要添加、访问和处理存储在一个计算机数据库中的数据，你就需要一个像MySQL这样的数据库管理系统。从计算机可以很好的处理大量的数据以来，数据库管理系统就在计算机处理中和独立应用程序或其他部分应用程序一样扮演着一个重要的角色。
+MySQL是一个关系数据库管理系统：关系数据库把数据存放在分立的表格中，这比把所有数据存放在一个大仓库中要好得多，这样做将增加你的速度和灵活性。MySQL”中的SQL代表Structured Query Language”（结构化查询语言）。SQL是用于访问数据库的最通用的标准语言，它是由ANSI/ISO定义的SQL标准。SQL标准发展自1986年以来，已经存在多个版本：SQL-86，SQL-92，SQL:1999，SQL:2003，其中SQL:2003是该标准的当前版本。
+MySQ是开源的：开源意味着任何人都可以使用和修改该软件，任何人都可以从Internet上下载和使用MySQL而不需要支付任何费用。如果你愿意，你可以研究其源代码，并根据你的需要修改它。
+本系统采用MySQL 5.0.8版本。
+3.3 Myeclipse的介绍
+说到Myeclips先得说下Eclipse，Eclipse 是一个开放源代码的、基于 Java 的可扩展开发平台。就其本身而言，它只是一个框架和一组服务，用于通过插件组件构建开发环境。幸运的是，Eclipse 附带了一个标准的插件集，包括 Java 开发工具（Java Development Tools，JDT）。
+MyEclipse 是什么？ 简单而言，MyEclipse是Eclipse的插件，也是一款功能强大的J2EE集成开发环境，支持代码编写、配置、测试以及除错。所以作为本次毕业设计IDE工具的不二人选。
+第四章 教学答疑系统的总体设计
+4.1系统的需求分析
+项目目标:
+本软件功能大致分为三大模块:学生模块,教师模块和管理员模块。
+学生模块:学生用户进行操作的模块。
+教师模块:教师用户进行操作的模块。
+管理员模块:管理员用户进行操作的模块。
+具体各用户需求分析:
+1．学生用户的需求分析
+学生登录后可以选择查看个人资料或者进入答疑系统,进入答疑系统后可以提出问题，问题提交给服务器端，等待教师的解答。若教师解答了此题目，当学生下次查看自己问题时即可看到老师回答的答案。
+2．教师用户的需求分析
+教师登录后可以选择查看个人资料或者进入答疑系统,进入答疑系统后可以查看未解题目,对未解问题的解答,教师还可以进行题库的管理操作,给题库添加删除修改章节，章节关键字，章节标准答案，标准答案的关键字。让题库能适应学生的要求。
+3．管理员用户的需求分析
+管理员登录后可以为对用户的管理操作,对题目的管理操作和个人信息的修改,以及添加新的用户。
+4.2系统的总体设计
+4.2.1系统总结构设计
+系统结构采用B/S结构:
+B/S（Browser/Server）结构即浏览器和服务器结构。它是随着Internet技术的兴起，对C/S结构的一种变化或者改进的结构。在这种结构下，用户工作界面是通过WWW浏览器来实现，极少部分事务逻辑在前端（Browser）实现，但是主要事务逻辑在服务器端（Server）实现，形成所谓三层（3-tier）结构。一个三层架构的应用程序由三部分组成，这三部分各自分布在网络中的不同地方。这三个部分分别是：工作站或表示层接口、事务逻辑、数据库以及与其相关的程序设计。在一个典型的三层架构应用程序中，应用程序的用户工作站包括提供图形用户界面（GUI）的程序设计和具体的应用程序入口表格或交互式窗口。事务逻辑处在局域网（LAN）服务器或其他共享主机上，它作为响应工作站所发出客户请求的服务器，而相对于处于大型机的第三层它是作为客户端，并且决定需要什么数据以及数据存储在哪里。第三层包括数据库以及处理读写以及访问数据库的程序。然而应用程序的设计可能比这个架构要复杂，对于大型程序来说，这个三层模式是一种比较简便的考虑方法。这种应用程序的设计使用客户/服务器模式，各层可以同时开发，并且可以由不同的成员组用不同的语言来开发。因为各个层次的开发不会影响其他层次，所以这种模型对于进一步开发软件是很方便的。这样就大大简化了客户端电脑载荷，减轻了系统维护与升级的成本和工作量，降低了用户的总体成本（TCO）。以目前的技术看，局域网建立B/S结构的网络应用，并通过Internet/Intranet模式下数据库应用，相对易于把握、成本也是较低的。它是一次性到位的开发，能实现不同的人员，从不同的地点，以不同的接入方式（比如LAN, WAN, Internet/Intranet等）访问和操作共同的数据库；它能有效地保护数据平台和管理访问权限，服务器数据库也很安全 。特别是在JAVA这样的跨平台语言出现之后，B/S架构管理软件更是方便、快捷、高效。
+4.2.1系统流程图
+系统流程图如(图4-1)所示
+图(4-1) 系统流程图
+系统用例图设计
+系统用例图如(图4-2)所示
+图4-2 系统用例图
+4.2.2系统的分层和技术选用
+本系统的分层结构以及技术选用: (图4-3)
+图4-3 分层结构技术图
+在整体设计模式上采用StrutsMVC模式的B/S架构
+各层的技术选用:
+在表现层:选用Struts,JSP为主要表现技术。
+需在Web.xml中添加:
+
+action
+org.apache.struts.action.ActionServlet
+
+config
+/WEB-INF/struts-config.xml
+
+
+debug
+3
+
+
+detail
+3
+
+0
+
+
+action
+*.do
+
+在业务层:选用JavaBean为主要技术,负责业务的操作。
+在持久层:选用Hibernate为主要技术,负责对持久对象的操作。
+由于使用Hibernate为持久层，由于我使用了Spring做中间代理,所有与数据库连接的工作只需要在applicationContext.xml中配置,部分代码如下:
+
+
+
+
+com.mysql.jdbc.Driver
+
+
+
+
+jdbc:mysql://localhost:3306/aq_system
+
+
+root
+root
+
+
+
+
+org.hibernate.dialect.MySQLDialect
+true
+
+
+
+在数据库层上:选用开源的MySql为数据库。
+4.2.3各层之间的连接:工厂模式。
+工厂模式主要是为创建对象提供过渡接口，以便将创建对象的具体过程屏蔽隔离起来，达到提高灵活性和低耦合的目的。跟为系统以后的扩展提供了良好接口。
+以AdminMgmtService为例,
+//产生DAO的工厂,绑定在线程上面,单例,线程安全。
+public interface AdminMgmtService {
+Userinfo login(String loginname, String loginpassword);
+Module getModules(Integer id);
+Collection queryAll();
+Question findByquestionid(Integer id);
+void deleteQuestion(Integer id);
+Collection queryAlluser();
+void deleteUser(Integer id);
+void register(Userinfo userinfo);
+}
+AdminMgmtServiceImpl类代码如下,在需要使用DAO时就直接调用方法,写好get和set方法:
+public class AdminMgmtServiceImpl implements AdminMgmtService {
+private AdminMgmtDAO dao;
+public AdminMgmtDAO getDao() {
+return dao;
+}
+public void setDao(AdminMgmtDAO dao) {
+this.dao = dao;
+}
+public Module getModules(Integer id) {
+Module ms =dao.modByid(id);
+return ms;
+}
+public Userinfo login(String loginname, String loginpassword) {
+return dao.login(loginname ,loginpassword)
+}
+public void deleteQuestion(Integer id) {
+dao.deleteQuestion(id);
+}
+public void deleteUser(Integer id) {
+dao.deleteUser(id);
+}
+public Question findByquestionid(Integer id) {
+return dao.qryByid(id);
+}
+public Collection queryAll() {
+return dao.queryAll();
+}
+public Collection queryAlluser() {
+return dao.queryAlluser();
+}
+public void register(Userinfo userinfo) {
+dao.registerUser(userinfo);
+}
+}
+在业务层如果要调用某个DAO对象,只需写在applicationContext.xml如下代码:
+
+
+
+
+
+在Action中如果要调用某个业务对象,只需写如下代码:
+private AdminMgmtService service;
+public AdminMgmtService getService() {
+return service;
+}
+public void setService(AdminMgmtService service) {
+this.service = service;
+}直接使用service调用方法
+第五章 系统详细设计
+系统共分学生用户模块,教师用户模块,题库管理模块和管理员模块。
+5.1 系统数据库设计
+5.1.1 数据库表的设计
+本系统共设用户表userinfo,问题表questions,模块表modules,章节关键字表operations，模块功能表rights。(图5-1)
+图5-1 数据库联系图
+5.1.2 数据库表的建立
+以userinfo表为例,由于实体类设计管理员,学生,教师都有用户表而来,所以建表是需要考虑到权限功能的不同,因此在用户表有字段status区分到底是哪个权限的用户(表5-2)。
+表5-2 userinfo表
+Id为与任务业务无关的独立字段,其优点是能确保永远不会修改。为此表主键约束。
+status为用户的类型:1为学生，2为教师，3为管理员；类型Varchar
+loginname为用户名。唯一约束。 类型Varchar
+loginPassword为用户密码。 类型Varchar
+Email 为用户email；唯一约束。 类型Varchar
+name 为真实姓名；类型Varchar
+sex 为性别；类型Varchar
+phone 为电话；类型Varchar
+具体建表SQL建表语言为:
+CREATE TABLE `userinfo` (
+`id` int(10) NOT NULL auto_increment,
+`loginname` varchar(20) NOT NULL,
+`loginpassword` varchar(20) NOT NULL,
+`name` varchar(20) NOT NULL,
+`sex` varchar(10) default NULL,
+`phone` int(20) default NULL,
+`email` varchar(20) default NULL,
+`status` int(10) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gb2312;
+其他表的建立如下:
+Questions(表5-3):
+表5-3 questions表
+ID为问题ID,与业务无关，为此表主键约束。 类型为int。
+questionname为问题主题；类型varchar。
+Details为问题内容；类型Varchar。
+Answer 为问题回答；可以为空，类型Varchar。
+SQL建表语句:
+CREATE TABLE `questions` (
+`id` int(10) NOT NULL auto_increment,
+`questionname` varchar(500) NOT NULL,
+`details` varchar(500) NOT NULL,
+`answer` varchar(500) default NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gb2312;
+modules(表5-4):
+表5-4 modules表
+id为模块的id,与业务无关,为此表主键约束。 类型为INT。
+mname为模块名； 类型Varchar。
+url为模块的超链接； 类型Varchar。
+SQL建表语句:
+CREATE TABLE `modules` (
+`id` int(10) NOT NULL auto_increment,
+`mname` varchar(20) NOT NULL,
+`url` varchar(30) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gb2312;
+operations (表5-5):
+表5-5 operations 表
+Id为章节关键字表ID,与业务无关,为此表主键。 类型为INT。
+Nume为模块目录。 类型Varchar。
+Mid为对应模块id,类型int。
+SQL建表语句:
+CREATE TABLE `operations` (
+`id` int(10) NOT NULL auto_increment,
+`name` varchar(30) NOT NULL,
+`mid` int(10) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gb2312;
+rights(表5-6):
+表5-6 rights 表
+id为功能ID,与业务无关,为此表主键；类型为INT。
+name为功能名；类型Varchar。
+url为功能名对应的连接；类型Varchar。
+Operationid为章节对应的id；类型int。
+SQL建表语句:
+CREATE TABLE `rights` (
+`id` int(10) NOT NULL auto_increment,
+`name` varchar(30) NOT NULL,
+`url` varchar(40) NOT NULL,
+`operationid` int(10) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gb2312 COMMENT=InnoDB free: 10240 kB;
+5.1.3 对象与数据库的映射
+因为JDBC代码重复量大,所以在本系统采用了Hibernate技术,使用Hibernate技术,对象与数据库的映射只需要在配置文件中实现。以userinfo为例,在实体包下添加Userinfo.xml,在里面添加配置:
+
+SYSTEM http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5.2学生用户模块的设计
+学生功活动图如下(图5-7)：
+学生通过帐号密码登录, 学生登录后可以选择查看个人资料或者进入答疑系统,进入答疑系统后可以提出问题，问题提交给服务器端，等待教师的解答。若教师解答了此题目，当学生下次查看自己问题时即可看到老师回答的答案。
+图5-7 学生模块活动图
+5.2.1学生模板大致设计
+学生的一般操作如登录，注销，对应系统Action,然后根据类型的不同返回不同的页面。学生的其他操作对应StudentAction,利用隐藏标签或者超链接直接带参数调用不同的方法,在各个方法中,调用学生业务实现类QuestionMgmtServiceImpl, QuestionMgmtServiceImpl再调用不同的QuestionMgmtDAO类实现对象的基本操作以完成业务操作,然后根据struts-config.xml中对应的路径返回页面。
+5.2.2 学生提问功能的设计
+学生进入学生模块后，调用StudentAction中的listQuestion方法看到所有的问题，可以进入看看是否回答了，并显实在学生的浏览器上，若学生对想提出问题可以调用StudentAcion中的bringQuestion方法把题目添加到题库，等待老师来解决。
+学生提问界面(图5-8)：
+图5-8 学生提问界面
+学生查询完后的界面(图5-9)：
+图5-9 学生查询问题界面
+5.3.3学生信息修改的设计
+学生通过此功能可以修改，调用StudentAction中的getUserinf方法就将个人信息查询出并显示在JSP表单中，点击修改调用JS校验判断信息是否合法，如果没问题就调用modifystu方法进行修改。
+学生信息修改界面(图5-10)：
+图5-10 学生信息修改界面
+5.3.4学生模块代码举例说明
+以学生查询自己以解答案为例:学生点击查看问题连接通过togetq.do页面跳转进入getQuestions.jsp。可以看到自己的所有问题,若问题已回答,可以看见问题状态成为已解答,并有超链接查看答案
+/getq.do?qid=${q.id}”>
+进入查看解答
+我们可以看到这是个带参数的超连接,getQuestion方法会调用传的参数然后找到具体是那个问题,方法代码如下:
+public ActionForward getQuestion(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+System.out.println(in getQuestion);
+Integer id = Integer.valueOf(request.getParameter(qid));
+Question q = service.findQuestionById(id);
+request.getSession().setAttribute(LOOKQ,q);
+
+return mapping.findForward(success);
+}
+该方法通过qid调用业务层QuestionMgmtServiceImpl中的findQuestionById方法获得该题目的问题和答案,DAO中其代码为:
+public Question qryByid(Integer id) {
+return (Question)this.getHibernateTemplate().get(Question.class.id);
+}
+这样,在获得了问题,答案和教师以后,分别把他们存放进session中,并跳转至lookquestion.jsp中,通过EL语言:
+${LOOKQ.answer}老师给出的答案.
+5.4教师模块的设计
+教师的活动图如下(图5-11)：
+教师登录后可以选择查看个人资料或者进入答疑系统,进入答疑系统后可以查看未解题目,对未解问题的解答,教师还可以进行题库的管理操作,给题库添加删除修改章节，章节关键字，章节标准答案，标准答案的关键字。让题库能适应学生的要求。
+图5-11 教师模块活动图
+5.4.1教师模块大致设计
+教师的一般操作如登录，注销，对应系统Action,然后根据类型的不同返回不同的页面。教师的其他操作对应TeacherAction,利用隐藏标签或者超链接直接带参数调用不同的方法,在各个方法中,调用教师业务实现类TeacherMgmtServiceImpl, TeacheMgmtServiceImpl再调用不同的TeacheMgmtDAO类实现对象的基本操作以完成业务操作,然后根据struts-config.xml中对应的路径返回页面。
+5.4.2教师回答问题模块的设计
+教师进入查看问题模块中，可以通过TeacherAction中的listQuestion方法查看到所有学生遗留的问题，并且可以通过每个问题查看提出问题，教师在TeacherAction中的toanswerQuestion可以进入对单个问题进行解答。answerQuestion方法进行回答问题。
+教师回答问题界面（图5-12）
+图5-12 教师回答问题界面
+5.4.3教师信息修改的设计
+教师通过此功能可以修改，调用TeacherAction中的getUserinf方法就将个人信息查询出并显示在JSP表单中，点击修改调用JS校验判断信息是否合法，如果没问题就调用modifytea方法进行修改。
+5.4.4教师模块代码举例说明
+以教师修改答案为例:教师点击进入解答超连接进入answerquestion.com 。这是我们可以看到所有此教师的答案都在页面上,点击修改答案超链接/toanswerq.do?qid=${q.id}”>
+进入解答
+我们可以看到这是个带参数的超连接,toanswerQuestion方法会调用传的参数然后找到具体是那个问题,方法代码如下:
+public ActionForward toanswerQuestion(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+System.out.println(in toanswerQuestion);
+Integer id = Integer.valueOf(request.getParameter(qid));
+Question q = service.findByQuestionid(id);
+request.getSession().setAttribute(ANSWERQ,q);
+
+return mapping.findForward(success);
+}
+该方法先从session中取得answer,然后对answerQuestion进行修改,并调用TeacheMgmtDAO中的updateAnswer方法进行答案的修改。UpdateAnswer中调用AnswerDAO的updateAnswer方法,
+public void updateQuestion(Question question) {
+this.getHibernateTemplate().saveOrUpdate(question);
+}
+进行对answer的更新。
+5.5管理员模块的设计
+管理员活动图如下(图5-13):
+管理员登录后可以为对用户的管理操作,对题目的管理操作和个人信息的修改,以及添加新的用户。
+图5-13 管理员模块活动图
+5.5.1管理员模板大致设计
+管理员的一般操作如登录，注册,注销,对应系统Action,然后根据类型的不同返回不同的页面。学生的其他操作对应AdminAction,利用隐藏标签或者超链接直接带参数调用不同的方法,在各个方法中,调用学生业务实现类AdminMgmtServiceImpl, AdminMgmtServiceImpl再调用不同的AdminMgmtDAOImpl类实现对象的基本操作以完成业务操作,然后根据struts-config.xml中对应的路径返回页面。
+5.5.2管理员人员/问题管理功能的设计
+管理员进入人员/问题管理后,可以通过不同的带参数超连接进行学生,教师和管理员或者问题的查看,还可以通过用户名进行单个用户的查看。还可以通过带参数的超链接调用AdminAction中不同的方法进行对用户删除。(图5-14)
+图5-14 管理问题界面
+5.5.3管理员注册用户的设计
+这个系统是面对校内的同学老师开放的，所以我的思想是只能有管理员才能进行开放注册的功能，学生是学号，老师是用户名，进入register.jsp页面，在表单最后点击注册。传入/register.do调用AdminAction中的register方法，进行注册。
+5.5.4管理员模块代码举例
+管理员进入问题管理后,可以
+
+/lookquestion.do?qid=${q.id }>查看解答
+
+
+/delequestion.do?qid=${q.id }>删除
+
+2个单元格，分别传有参数，调用显示问题的详细信息，还有个是否删除的超链接
+AdminAction中的delete方法,该方法代码如下:
+public ActionForward deleUser(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+System.out.println(in deleUser);
+Integer id = Integer.valueOf(request.getParameter(uid));
+service.deleteUser(id);
+
+return mapping.findForward(success);
+}
+该方法调用adminMgmtDAO中的deleteQuestion方法进行删除。
+AdminMgmtDAO的deleteQuestion方法,
+public void deleteQuestion(Integer id) {
+Question q = (Question) this.getHibernateTemplate().get(Question.class, id);
+this.getHibernateTemplate().delete(q);
+}
+第6章 软件测试
+调试本身的目的是尽可能多地暴露程序中的错误，但是，发现错误的最终目的还是为了改正错误。因此，在成功的测试之后，还必须进一步诊断和改正程序中的错误，这就是调试的任务。调试是软件开发过程中最艰巨的脑力劳动。调试开始时，程序员仅仅面对着错误的征兆，然而在问题的外部现象和内在原因之间往往并没有明显的联系，在组成程序的数以万计的元素中，每一个都可能是错误的根源。如何在浩如烟海的程序元素中找出有错误的几个元素，这是调试过程中最关键的技术问题。
+6.1 调试过程
+本系统的开发过程遵循如下步骤：先进行需求分析以及总体设计，而后根据总体设计思路进行逐个部分的设计、编码、调试，整个软件基本框架搭建好后，再逐步进行完善。当然这个步骤是伴随着调试进行的，因此调试渗透在整个软件开发过程之中，而且，对于系统中大部分的局部设计、开发过程是建立在实验的基础上的，而进行实验的目的也是为了便于进行各种测试与调试，来确定与了解某些控件或类的功能、属性、方法以及可能出现的问题等等，可以说调试在整个开发过程中占了很大一部分时间。
+程序的调试原则包括正确性，可靠性，易用性等几个方面。在调试过程中，可能会遇到多种错误，最常见且易发现的是编译错误。遇到编译的错误，可以根据系统的提示作出相应的修改。另一种错误是逻辑错误，在编译的时候不易发现，而在运行之后结果与程序员预先设想的结果不一致，但是系统又没有提示，所以这样的情况下，需要仔细查找原因。
+6.2 调试过程中遇到的问题
+1)Hibernate配置问题,因为Hibernate配置文件需要实体类属性和字段的一一对应,而且对于一对多的多对一的关系有特殊的写法,所以在一开始设计上总是问题很多。
+2)DAO层HQL语言的使用问题,除了上面说到的延迟抓取,HQL毕竟有别与我们经常使用的SQL语言,经常由于两者相互混淆而导致错误。
+3)在业务层的事务操作上,有时候不小心会把两个有关联的操作放在不同的事务中,导致操作错误。
+问题还有很多,以上只是挑取比较常见的几种。
+结 论
+本次毕业设计，学到了很多东西，无论是在知识的掌握方面，还是在经验的积累方面，都收获颇丰。独立开发一个基于Struts和Hibernate的教学答疑系统，从接受毕业设计的任务，到熟悉软件开发环境，再到集中精力开发系统，整个过程中遇到了很多问题，我学着自己解决这些问题，在解决问题的过程中，学到了很多有用的东西。过程虽然几多波折，但却真的令我受益匪浅。
+第一,关于程序设计方面，由于系统较小所以采用瀑布式开发,但由于经验太少和对业务的考虑不够深远,导致写代码时发现有些写到的类用不到,要用到的没写,在这方面可以说教训很大。所以深深感觉到设计在一个系统开发的重要地位。
+第二，在积累经验方面，感觉平时的学习只有通过实践才能真正掌握,虽然有时候嘴上能把很多东西说的很详细,很轻松,但是真正写了才发现问题很多,这对于我来说是本此毕业设计的最大收获。
+第三，关于WEB技术方面, 我理想中的Web开发架构是这样的:开发速度快，运行速度快，结构清晰优雅。在使用JavaEE对于Web技术的开发后,我深刻的体会到Web技术的分层结构及其优点。 本系统使用到了当今比较流行的框架Java Web开发框架, ,最流行的框架是Apache Struts。当Web开发继续演变它的工具和编程方法时,Java应用程序框架也将继续成长下去。Java Web开发框架的未来一片明亮。
+在这次毕业设计中我使用到了非常多的新技术，在基于Struts和Hibernate的教学答疑系统这个课题的基础上，我加上了Spring做了一个代理程序，也算是SSH框架吧，校验也使用了ajax，对于这些技术的运用我只是了解皮毛而已，但是要是想更深入的了解，使用J2EE我要学习的还很多，要巩固的还很多。
+主要参考文献
+[1]孙卫琴.JAVA面向对象编程[M].北京，电子工业出版社，2006.
+[2]孙卫琴.精通Hibernate[M]. 北京，电子工业出版社, 2005.
+[3] Hibernate3.2官方文档[M]. 2006.
+[4]（美）Marty Hall, larry Browm，赵学良.Servlet与JSP核心编程[M]. 北京，清华大学出版社,2004.
+[5]林上杰，林康司.JSP2.0技术手册[M]. 北京，电子工业出版社,2004.
+[6]孙卫琴.精通Struts：基于MVC的Java Web设计与开发[M]. 北京，电子工业出版社,2004.
+[7]张天河 .Struts Hibernate Spring 集成开发宝典[M]. 北京，电子工业出版社,2006.
+[8]Gai-Tai Huang Hsiu-Hsen Yao .Chinese Question-Answering System.2003
+[9]李素建，张健，黄雄，白硕，刘群.Semantic Computation in a Chinese Question-Answering System[J]. 北京，电子工业出版社,2001.
+[10]王小冬 .为Struts应用程序构建Web服务[J]. 北京，计算机与现代化出版社 ,2005.
+[11]JamesTurner.Struts Kick Start[M]. 北京，北京电子工业出版社,2004.
+[12]李刚.整合Struts+Hibernate+Spring应用开发详解[M]. 北京，清华大学出版社,2007.
+[13]蔡剑.J2EE和Tomcat第2版[M]. 北京，清华大学出版社, 2005.
+[14]张靓.Java案例开发[M].北京，中国水利水电出版社,2005.
+[15]崔洪斌.J2EE Web Service高级编程[M].北京，清华大学出版社,2005.
+[16]史燕.基于Struts和Hibernate的Web应用开发框架[M]. 北京，中国数据通信出版社,2005.
+[17]高昂.基于Hibernate与Struts框架的数据持久化应用研究[M]. 北京，计算机应用出版社,2005.
+[18]陈光.Struts开发及项目实施[C]. Internet信息世界,2002—10.
+[19]欧冰玉.利用struts架构进行项目开发的探讨[C].柳钢科技,2006—3.
+[20]透明.冬眠的数据库——Hibernate初接触[J].科技资讯,2006—3.
+[21]胡建华.基于Hibernate开发与数据库无关的系统[J]. 北京，计算机与现代化,2005—9.
+[22]高昂,卫文学.基于Hibernate与Struts框架的数据持久化应用研究[J].计算机应用,2005.
+[23]王青松.基于Hibernate实现MVC中的模型框架[J].辽宁大学学报(自然科学版),2007,34(4)：309-311.
+[24]邱晓荣,王继斌,朱应国.基于MVC模式的Struts框架在信息管理系统中的应用[J].福建电脑,2007,27(8)：84-85.
+致 谢
+这次毕业设计的顺利完成感谢我的母校——江苏技术师范学院，对我辛勤培育之恩；感谢校院领导和老师们多年来，对我的孜孜教诲，在这里我会永生不忘；感谢同学们这么多年来对我的关心和帮助。
+这里我还要感谢我的指导老师：常玉慧老师。他从一开始就帮助我分析系统的设计，技术的选择，并指导我注册时的校验和ajax方法。他还为我收集有关系统的中英文资料，使我能对这个项目有更广更深的认识。他还督促我认真完成毕业设计，所有这些都体现了他作为教师对工作高度负责的精神和对知识、技术一丝不苟的态度。
+最后我要感谢和我一起学习的同学，正是因为我们互帮互助，才能一起克服许许多多困难。
+在此再次向校院的各位领导、各位教师表示我最崇高的敬意和最衷心的感谢！
+苏骋
+2010年6月
+
+附录 令牌机制,JS校验,AJAX
+附录一：令牌机制验证码
+验证码：就是将一串随机产生的数字或符号，生成一幅图片， 图片里加上一些干扰象素（防止OCR），由用户肉眼识别其中的验证码信息，输入表单提交网站验证，验证成功后才能使用某项功能。
+验证码一般是防止有人利用机器人自动批量注册、对特定的注册用户用特定程序暴力破解方式进行不断的登陆、灌水。因为验证码是一个混合了数字或符号的图片，人眼看起来都费劲，机器识别起来就更困难。像百度贴吧未登录发贴要输入验证码大概是防止大规模匿名回帖的发生。
+我使用的方法是，jsp页面生成一个4位数字,用户输入后在登录的Action中会取得并且对比,正确就成功登录,请看下面代码:
+1) image.jsp
+<%@ page import=java.awt.*,java.awt.image.*,java.util.*,javax.imageio.* %>
+<%@ page import=java.io.OutputStream %>
+<%!
+Color getRandColor(int fc,int bc){
+Random random = new Random();
+if(fc>255) fc=255;
+if(bc>255) bc=255;
+int r=fc+random.nextInt(bc-fc);
+int g=fc+random.nextInt(bc-fc);
+int b=fc+random.nextInt(bc-fc);
+return new Color(r,g,b);
+}
+%>
+<%
+try{
+response.setHeader(Pragma,No-cache);
+response.setHeader(Cache-Control,no-cache);
+response.setDateHeader(Expires, 0);
+int width=60, height=20;
+BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+OutputStream os=response.getOutputStream();
+Graphics g = image.getGraphics();
+Random random = new Random();
+g.setColor(getRandColor(200,250));
+g.fillRect(0, 0, width, height);
+g.setFont(new Font(Times New Roman,Font.PLAIN,18));
+g.setColor(getRandColor(160,200));
+for (int i=0;i<155;i++)
+{
+int x = random.nextInt(width);
+int y = random.nextInt(height);
+int xl = random.nextInt(12);
+int yl = random.nextInt(12);
+g.drawLine(x,y,x+xl,y+yl);
+}
+String sRand=;
+for (int j=0;j<4;j++){
+String rand=String.valueOf(random.nextInt(10));
+sRand+=rand;
+g.setColor(new Color(20+random.nextInt(110),20+random.nextInt(110),20+random.nextInt(110)));
+g.drawString(rand,13*j+6,16);
+}
+session.setAttribute(ccode,sRand);
+g.dispose();
+ImageIO.write(image, JPEG,os);
+os.flush();
+os.close();
+os=null;
+response.flushBuffer();
+out.clear();
+out = pageContext.pushBody();
+}
+catch(IllegalStateException e)
+{
+System.out.println(e.getMessage());
+e.printStackTrace();
+}%>
+2) LoginAction.java中登陆代码:
+public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+String loginname = request.getParameter(loginname);
+String password = request.getParameter(loginpassword);
+String ccode = (String)request.getSession().getAttribute(ccode);
+String checkcode = (String)request.getParameter(imgcode);
+Userinfo user = service.login(loginname, password);
+if (user == null){
+return mapping.findForward(failed);
+}
+else{
+if(!ccode.equals(checkcode)){
+return mapping.findForward(failed);
+}
+request.getSession().setAttribute(USER, user);
+Integer mid=user.getStatus();
+Module ms = service.getModules(mid);
+System.out.println(ms);
+
+request.getSession().setAttribute(MODULES, ms);
+
+return mapping.findForward(success);
+}
+}
+附录二：JS校验
+因为我做的网站需要有注册和修改个人资料，如果不对信息进行校验的话，会出现不严谨不稳定的问题。所以我在需要注册，修改的JSP页面上都调用了一个JS校验：
+1) 登录名不能为空，只能是英文或者数字
+2) 密码不能为空，长度在6-8之间，2次输入的密码必须一致
+3) 姓名不能为空，姓名中不能有空格
+4) 电话号码必须是数字
+5) Email必须有格式限制
+function checkuser() {
+var name;
+var loginname;
+var loginpassword;
+var email;
+var phone;
+name = new String(document.userform.name.value);
+loginname = new String(document.userform.loginname.value);
+password = new String(document.userform.loginpassword.value);
+email = new String(document.userform.email.value);
+phone = new String(document.userform.phone.value);
+
+if (loginname == ) {
+document.getElementById(loginNameErr).innerHTML = 登录名不能为空!;
+document.userform.loginname.focus();
+return false;
+}else if (!isloginnameString(loginname)) {
+document.getElementById(loginNameErr).innerHTML = 只能用英文字符和数字!;
+document.userform.loginname.focus();
+return false;
+}
+document.getElementById(loginNameErr).innerHTML = ;
+
+if (password == ) {
+document.getElementById(passwordErr).innerHTML = 密码不能为空!;
+document.userform.password.focus();
+return false;
+}else if (password.length < 6 || password.length > 8) {
+document.getElementById(passwordErr).innerHTML = 密码长度要大于6小于8之间!;
+document.userform.password.focus();
+return false;
+}
+document.getElementById(passwordErr).innerHTML = ;
+
+if (document.userform.passwordsec.value == ) {
+document.getElementById(passwordsecErr).innerHTML = 请再次输入密码!;
+document.userform.passwordsec.focus();
+return false;
+} else if (document.userform.loginpassword.value != document.userform.passwordsec.value) {
+document.getElementById(passwordsecErr).innerHTML = 您两次的密码不一致!;
+document.userform.passwordsec.value = ;
+document.userform.passwordsec.focus();
+return false;
+}
+document.getElementById(passwordsecErr).innerHTML = ;
+
+if (name == ) {
+document.getElementById(userNameErr).innerHTML = 请输入姓名!;
+document.userform.name.focus();
+return false;
+}else if(name.indexOf( )!=-1){
+document.getElementById(userNameErr).innerHTML = 姓名不能有空格!;
+document.userform.name.focus();
+return false;
+}
+document.getElementById(userNameErr).innerHTML = ;
+
+if (!isNumber(phone)) {
+document.getElementById(phoneErr).innerHTML = 电话号码只能为数字!;
+document.userform.phone.focus();
+return false;
+}
+document.getElementById(phoneErr).innerHTML =;
+document.userform.submit();
+
+if(email==){
+document.getElementById(emailErr).innerHTML = 请输入email!;
+document.userform.email.focus();
+return false;
+}else if (email !=
+& IsEmail(document.userform.email.value)) {
+document.getElementById(emailErr).innerHTML = 您输入的email格式不对!;
+document.userform.email.focus();
+return false;
+}
+document.getElementById(emailErr).innerHTML = ;
+
+
+}
+function IsEmail(item) {
+var etext
+var elen
+var i
+var aa
+var uyear, umonth, uday
+etext = item;
+elen = etext.length;
+if (elen < 5)
+return true;
+i = etext.indexOf(@, 0)
+if (i == 0 || i == -1 || i == elen - 1)
+return true;
+else {
+if (etext.indexOf(@, i + 1) != -1)
+return true;
+}
+if (etext.indexOf(.., i + 1) != -1)
+return true;
+i = etext.indexOf(., 0)
+if (i == 0 || i == -1 || etext.charAt(elen - 1) == .)
+return true;
+if (etext.charAt(0) == - || etext.charAt(elen - 1) == -)
+return true;
+if (etext.charAt(0) == _ || etext.charAt(elen - 1) == _)
+return true;
+for (i = 0; i <= elen - 1; i++) {
+aa = etext.charAt(i)
+if (!((aa == .) || (aa == @) || (aa == -) || (aa == _)
+|| (aa >= 0 && aa <= 9) || (aa >= a && aa <= z) || (aa >= A && aa <= Z)))
+return true;
+}
+return false;
+}
+function isNumber(str) {
+if (str.length == 0) {
+return false;
+}
+for ( var i = 0; i < str.length; i++) {
+if (str.charAt(i) < 0 || str.charAt(i) > 9) {
+return false;
+}
+}
+return true;
+}
+function isloginnameString(ssn) {
+var re = /^[0-9a-z][w]*[0-9a-z]$/i;
+if (re.test(ssn)) {
+return true;
+} else {
+return false;
+}
+}
+附录三：AJAX
+在基于数据的应用中，用户需求的数据如联系人列表，可以从独立于实际网页的服务端取得并且可以被动态地写入网页中，给缓慢的Web应用体验着色使之像桌面应用一样。AJAX开发与传统的CS开发有很大的不同。这些不同引入了新的编程问题，最大的问题在于易用性。由于AJAX依赖浏览器的JavaScript和XML，浏览器的兼容性和支持的标准也变得和JavaScript的运行时性能一样重要了。这些问题中的大部分来源于浏览器、服务器和技术的组合，因此必须理解如何才能最好的使用这些技术。
+我在系统中使用到AJAX技术的地方是，登录的用户名进行判断是否是重复的如果在数据库中有同样的用户名则不能注册，在界面上直接显示出来。Ajax分别在3个地方写入：1.在JSP页面上提出；2.在Action中有一个判断的方法；3.在applicationContext.xml中进行方法配置。
+1) JSP页面
+
+1） AdminAction.java中判断方法
+public ActionForward userValidator(ActionMapping mapping, ActionForm form,
+HttpServletRequest request, HttpServletResponse response)
+throws Exception {
+String loginname=request.getParameter(loginname);
+PrintWriter out=response.getWriter();
+if(loginname.trim().length()==0||loginname==null){
+out.println(请输入账号名);
+out.flush();
+return mapping.findForward(userreg);
+}
+Collection admins=service.queryAlluser();
+System.out.println(admins);
+Iterator it=admins.iterator();
+while(it.hasNext()){
+Userinfo admin=(Userinfo)it.next();
+
+if(loginname.equals(admin.getLoginname())){
+out.println(对不起该账号名已经存在！);
+out.flush();
+return mapping.findForward(error);
+}
+}
+return mapping.findForward(error);
+}
+3) 在applictionContext.xml中配置
+
+
+
+
+
+登录
+判断权限
+学生模块
+教师模块
+管理员模块
+查看问题
+提交问题
+修改资料
+修改资料
+查看问题
+解答问题
+管理人员
+管理问题
+注册
+退出
+终止
+serviceLocator
+表示层
+Struts
+Struts Action,
+ActionForm,
+Jsp,
+Struts-config.xml,etc.
+DAO Classes
+JavaBean
+Hibernate session Management
+持久层
+Hibernate
+DataSource
+Transactions
+Business Service Classes
+QueryLanguage Support and other Hibernate Services
+问题表
+用户表
+章节关键字表
